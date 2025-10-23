@@ -6,14 +6,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: seleniumtestdemoapp
+      app: erum_repo
   template:
     metadata:
       labels:
-        app: seleniumtestdemoapp
+        app: erum_repo
     spec:
       containers:
-        - name: seleniumtestdemoapp
-          image: bhavani765/sample:seleniumtestimage   # use your Docker Hub image
+        - name: erum_repo
+          image: erumfaiz/erum_repo:v1   # use your Docker Hub image
           ports:
             - containerPort: 5000
