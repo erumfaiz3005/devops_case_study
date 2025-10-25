@@ -1,16 +1,18 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('myForm.html')
+def home():
+    return render_template('home.html', title='Home')
 
-@app.route('/submit', methods=['GET','POST'])
-def submit():
-    # Get data from the form
-    username = request.form['username']
-    return render_template('greeting.html', name=username)
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', title='Contact')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port= 5000, debug = True)
+    app.run(debug=True)
