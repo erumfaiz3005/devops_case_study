@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seleniumtestdemoapp-deployment
+  name: stestdemoapp-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: seleniumtestdemoapp
+      app: stestdemoapp
   template:
     metadata:
       labels:
-        app: seleniumtestdemoapp
+        app: stestdemoapp
     spec:
       containers:
-        - name: seleniumtestdemoapp
-          image: erumfaiz/sample:seleniumtestimage   # use your Docker Hub image
+        - name: stestdemoapp
+          image: erumfaiz/sample:stestimage   # updated Docker Hub image
           ports:
             - containerPort: 5000
