@@ -3,9 +3,9 @@ pipeline {
    
     stages {
 
-        stage('Run Selenium Tests with pytest') {
+        stage('Run S Tests with pytest') {
             steps {
-                    echo "Running Selenium Tests using pytest"
+                    echo "Running S Tests using pytest"
 
                     // Install Python dependencies
                     bat 'pip install -r requirements.txt'
@@ -17,7 +17,6 @@ pipeline {
                     bat 'ping 127.0.0.1 -n 5 > nul'
 
                     // ✅ Run tests using pytest
-                    //bat 'pytest tests\\test_registrationapp.py --maxfail=1 --disable-warnings --tb=short'
                     bat 'pytest -v'
             }
         }
@@ -25,23 +24,24 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Build Docker Image"
-                bat "docker build -t seleniumdemoapp:v1 ."
+                bat "docker build -t sdemoapp:v1 ."
             }
         }
+
         stage('Docker Login') {
             steps {
                   bat 'docker login -u erumfaiz -p Erum@3005'
-                }
-            }
-        stage('push Docker Image to Docker Hub') {
-            steps {
-                echo "push Docker Image to Docker Hub"
-                bat "docker tag seleniumdemoapp:v1 erumfaiz/sample:seleniumtestimage"               
-                    
-                bat "docker push erumfaiz/sample:seleniumtestimage"
-                
             }
         }
+
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                echo "Push Docker Image to Docker Hub"
+                bat "docker tag sdemoapp:v1 erumfaiz/sample:stestimage"               
+                bat "docker push erumfaiz/sample:stestimage"
+            }
+        }
+
         stage('Deploy to Kubernetes') { 
             steps { 
                     // apply deployment & service 
@@ -50,6 +50,7 @@ pipeline {
             } 
         }
     }
+
     post {
         success {
             echo 'Pipeline completed successfully!'
