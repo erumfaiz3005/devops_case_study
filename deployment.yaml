@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: stestdemoapp
-          image: erumfaiz/sample:stestimage   # updated Docker Hub image
+          image: erumfaiz/sample:seleniumtestimage   # updated Docker Hub image
           ports:
             - containerPort: 5000
